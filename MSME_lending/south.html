@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Coding Train: Data and APIs Project 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+</head>
+
+
+<body>
+
+
+    <h1>South Data</h1>
+    <div style="top:50px;">
+        <h2>Bank-Penetration</h2>
+
+        <canvas id="myChart" width="500" height="500"></canvas>
+        <script>
+            chartIt1();
+
+            async function chartIt1() {
+                const ds = await getData();
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ds.xl,
+                        datasets: [{
+                            fill: false,
+                            label: 'bank-peneteration(rural)',
+                            data: ds.yl_r,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'bank-peneteration(semi-urban)',
+                            data: ds.yl_su,
+                            backgroundColor: [
+                                'rgba(0, 255, 255, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 255, 255, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'bank-peneteration(urban)',
+                            data: ds.yl_u,
+                            backgroundColor: [
+                                'rgba(255, 255 , 0, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 255 , 0, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'bank-peneteration(metro)',
+                            data: ds.yl_m,
+                            backgroundColor: [
+                                'rgba(0, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 99, 132, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'bank-peneteration(total)',
+                            data: ds.yl_t,
+                            backgroundColor: [
+                                'rgba(0, 99, 0, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 99, 0, 1)',
+                            ]
+
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+
+                            yAxes: [{
+
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            }
+
+            async function getData() {
+                const xl = [];
+                const yl_r = [];
+                const yl_su = [];
+                const yl_u = [];
+                const yl_m = [];
+                const yl_t = [];
+                const response = await fetch("csv data/south.csv");
+                const data = await response.text();
+                const rows = data.split('\n');
+                for (let i = 0; i < rows.length; i++) {
+                    const col = rows[i].split(',');
+                    xl.push(col[0]);
+                    yl_r.push(col[1]);
+                    yl_su.push(col[2]);
+                    yl_u.push(col[3]);
+                    yl_m.push(col[4]);
+                    yl_t.push(col[5]);
+                }
+                return {
+                    xl,
+                    yl_r,
+                    yl_su,
+                    yl_u,
+                    yl_m,
+                    yl_t
+                };
+            }
+        </script>
+    </div>
+
+    <div style="position:absolute;top:60px ; padding-left:550px">
+        <h2>Credit-Penetration(Small Borrowal)</h2>
+        <canvas id="myChart1" width="500" height="500"></canvas>
+
+        <script>
+            chartIt1();
+
+            async function chartIt1() {
+                const ds = await getData();
+                var ctx = document.getElementById('myChart1').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ds.xl,
+
+                        datasets: [{
+                            fill: false,
+                            label: 'credit-peneteration(rural)',
+                            data: ds.yl_r,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'credit-peneteration(semi-urban)',
+                            data: ds.yl_su,
+                            backgroundColor: [
+                                'rgba(0,255,255, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0,255,255, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'credit-peneteration(urban)',
+                            data: ds.yl_u,
+                            backgroundColor: [
+                                'rgba(255, 255 , 0, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 255 , 0, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'credit-peneteration(metro)',
+                            data: ds.yl_m,
+                            backgroundColor: [
+                                'rgba(0, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 99, 132, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'credit-peneteration(total)',
+                            data: ds.yl_t,
+                            backgroundColor: [
+                                'rgba(0, 99, 0, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 99, 0, 1)',
+                            ]
+
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            }
+
+            async function getData() {
+                const xl = [];
+                const yl_r = [];
+                const yl_su = [];
+                const yl_u = [];
+                const yl_m = [];
+                const yl_t = [];
+                const response = await fetch("csv data/south.csv");
+                const data = await response.text();
+                const rows = data.split('\n');
+                for (let i = 0; i < rows.length; i++) {
+                    const col = rows[i].split(',');
+                    xl.push(col[0]);
+                    yl_r.push(col[6]);
+                    yl_su.push(col[7]);
+                    yl_u.push(col[8]);
+                    yl_m.push(col[9]);
+                    yl_t.push(col[10]);
+                }
+                return {
+                    xl,
+                    yl_r,
+                    yl_su,
+                    yl_u,
+                    yl_m,
+                    yl_t
+                };
+            }
+        </script>
+    </div>
+
+    <div style="position:absolute;top:700px">
+        <h2>Credit-Penetration</h2>
+        <canvas id="myChart2" width="500" height="500" position="relative"></canvas>
+
+        <script>
+            chartIt1();
+
+            async function chartIt1() {
+                const ds = await getData();
+                var ctx = document.getElementById('myChart2').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ds.xl,
+
+                        datasets: [{
+                            fill: false,
+                            label: 'credit-peneteration(rural)',
+                            data: ds.yl_r,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'credit-peneteration(semi-urban)',
+                            data: ds.yl_su,
+                            backgroundColor: [
+                                'rgba(0,255,255, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0,255,255, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'credit-peneteration(urban)',
+                            data: ds.yl_u,
+                            backgroundColor: [
+                                'rgba(255, 255 , 0, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 255 , 0, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'credit-peneteration(metro)',
+                            data: ds.yl_m,
+                            backgroundColor: [
+                                'rgba(0, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 99, 132, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'credit-peneteration(total)',
+                            data: ds.yl_t,
+                            backgroundColor: [
+                                'rgba(0, 99, 0, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 99, 0, 1)',
+                            ]
+
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            }
+
+            async function getData() {
+                const xl = [];
+                const yl_r = [];
+                const yl_su = [];
+                const yl_u = [];
+                const yl_m = [];
+                const yl_t = [];
+                const response = await fetch("csv data/south.csv");
+                const data = await response.text();
+                const rows = data.split('\n');
+                for (let i = 0; i < rows.length; i++) {
+                    const col = rows[i].split(',');
+                    xl.push(col[0]);
+                    yl_r.push(col[11]);
+                    yl_su.push(col[12]);
+                    yl_u.push(col[13]);
+                    yl_m.push(col[14]);
+                    yl_t.push(col[15]);
+                }
+                return {
+                    xl,
+                    yl_r,
+                    yl_su,
+                    yl_u,
+                    yl_m,
+                    yl_t
+                };
+            }
+        </script>
+    </div>
+    <div style="position:absolute;top:700px;padding-left: 550px">
+        <h2>Deposit-Penetration</h2>
+        <canvas id="myChart3" width="500 " height="500 "></canvas>
+
+        <script>
+            chartIt1();
+
+            async function chartIt1() {
+                const ds = await getData();
+                var ctx = document.getElementById('myChart3').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ds.xl,
+
+                        datasets: [{
+                            fill: false,
+                            label: 'Deposit-peneteration(rural)',
+                            data: ds.yl_r,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'Deposit-peneteration(semi-urban)',
+                            data: ds.yl_su,
+                            backgroundColor: [
+                                'rgba(0,255,255, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0,255,255, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'Deposit-peneteration(urban)',
+                            data: ds.yl_u,
+                            backgroundColor: [
+                                'rgba(255, 255 , 0, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 255 , 0, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'Deposit-peneteration(metro)',
+                            data: ds.yl_m,
+                            backgroundColor: [
+                                'rgba(0, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 99, 132, 1)',
+                            ]
+
+                        }, {
+                            fill: false,
+                            label: 'Deposit-peneteration(total)',
+                            data: ds.yl_t,
+                            backgroundColor: [
+                                'rgba(0, 99, 0, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(0, 99, 0, 1)',
+                            ]
+
+                        }]
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            }
+
+            async function getData() {
+                const xl = [];
+                const yl_r = [];
+                const yl_su = [];
+                const yl_u = [];
+                const yl_m = [];
+                const yl_t = [];
+                const response = await fetch("csv data/south.csv ");
+                const data = await response.text();
+                const rows = data.split('\n');
+                for (let i = 0; i < rows.length; i++) {
+                    const col = rows[i].split(',');
+                    xl.push(col[0]);
+                    yl_r.push(col[16]);
+                    yl_su.push(col[17]);
+                    yl_u.push(col[18]);
+                    yl_m.push(col[19]);
+                    yl_t.push(col[20]);
+                }
+                return {
+                    xl,
+                    yl_r,
+                    yl_su,
+                    yl_u,
+                    yl_m,
+                    yl_t
+                };
+            }
+        </script>
+    </div>
+</body>
+
+</html>
