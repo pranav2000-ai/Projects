@@ -14,7 +14,7 @@ One of the favourite games of my childhood, this is my own version of the SNAKE 
 4)The Matrix Digital Rain:     
 Most of the coumputer buffs must have scene the Matrix Trilogy and me like anyother guy was fascinated by the movie and more so by the Digital Rain. This is my own digtal rain...My own MATRIX.
 
-5) MSME Lending:
+5)MSME Lending:
 This was a data analysis projrct. THrough this project i was able to create a tiime series data of Statewise Bank Lendings to MSME sector. Chart.js was used to visualize the data on line plots.
 
 6)ISS Tracker:
